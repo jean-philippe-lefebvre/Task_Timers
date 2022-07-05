@@ -1,0 +1,25 @@
+name : Intergration Continue
+on:
+  push:
+    branches:
+      - main
+  pull-request:
+    branches:
+      - main
+jobs:
+  frontend-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        workin-directory: src/components
+    steps: 
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        width:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lauch test
+        run: npm test
